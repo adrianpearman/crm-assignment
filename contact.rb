@@ -1,11 +1,12 @@
 class Contact
-
+  attr_reader :id
+  attr_accessor :first_name, :last_name, :email, :note
   # This method should initialize the contact's attributes
   def initialize
     @first_name = first_name
     @last_name = last_name
     @email = email
-    @note 
+    @note = note 
   end
 
   # This method should call the initializer,
