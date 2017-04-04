@@ -1,13 +1,14 @@
-require_relative "Contact"
+require_relative "contact.rb"
 
 class CRM
 
-  def initialize(contact)
-    @contact = contact
+  def initialize
+    # @contact = contact
+    @run = true
   end
 
   def main_menu
-    while true
+    while @run == true
       print_main_menu
       user_selected = gets.to_i
       call_option(user_selected)
@@ -22,6 +23,15 @@ class CRM
     puts '[5] Search by attribute'
     puts '[6] Exit'
     puts 'Enter a number: '
+  end
+
+  def call_option(option)
+    case option
+    when 1
+      add_new_contact
+    when 6
+      @run = false
+    end
   end
 
   def call_option(selection)
@@ -49,8 +59,6 @@ class CRM
     note = gets.chomp
 
     contact = Contact.create(first_name, last_name, email, note)
-
-
   end
 
   def modify_existing_contact
@@ -61,7 +69,10 @@ class CRM
   end
 
   def delete_contact
-
+    puts "What contact id would you like to delete?"
+    contact_id = gets.chomp
+    contact = contact.find_by(contact_id)
+    contact.delete
   end
 
   def display_all_contacts
@@ -74,6 +85,9 @@ class CRM
   def search_by_attribute
 
   end
-
-
 end
+end
+
+crm = CRM.new
+crm.print_main_menu
+crm.delete_contact
