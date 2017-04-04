@@ -48,10 +48,15 @@ class CRM
     puts "if you'd like, please enter a note about yourself"
     note = gets.chomp
 
-    con
+    contact = Contact.create(first_name, last_name, email, note)
+
+
   end
 
   def modify_existing_contact
+    puts "please enter the contact id"
+    contact = gets.chomp.to_i
+
 
   end
 
@@ -60,7 +65,10 @@ class CRM
   end
 
   def display_all_contacts
-
+    display_contacts = Contact.all
+    display_contacts.each do |contact|
+      puts "ID #{contact.id}"
+      puts "#{contact.first_name} #{contact.last_name} #{contact.email} #{contact.note}"
   end
 
   def search_by_attribute
