@@ -46,9 +46,8 @@ class Contact
   # and then make the appropriate change to the contact
 
   #
-  def self.update(id, variable, value)
+  def update(variable, value)
     @@contacts.each do |name|
-    if id == name.id
       case variable
       when "first_name"
         name.first_name = value
@@ -59,7 +58,6 @@ class Contact
       when "note"
         name.note = value
       end
-    end
   end
   end
 
@@ -95,14 +93,12 @@ class Contact
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
   def delete
-
+    Contact.all.delete(self)
   end
 
   # Feel free to add other methods here, if you need them.
+  def full_name
+    return "#{@first_name} #{@last_name}"
+  end
 
 end
-
-Contact.create("Adrian","Long","1234@mfmfm.com")
-Contact.create("George","Ping","pretzel@thristy.com")
-Contact.create("Jerry","Ring","whats@thedeal.com")
-Contact.create("Elaine","Hi","nosoup@foryou.com")
